@@ -70,28 +70,32 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
-      <h1>ResetPassword</h1>
+    <div className="login">
+      <h2>Reset Password</h2>
       {valid ? (
-        <form action="#" onSubmit={handleSubmit}>
-          <input
-            type="password"
-            ref={passref}
-            placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            ref={conpassref}
-            placeholder="Confirm Password"
-            required
-          />
-          <input disabled={loading} type="submit" value="UPDATE PASSWORD" />
-        </form>
+        <>
+          <form action="#" onSubmit={handleSubmit}>
+            <input
+              type="password"
+              ref={passref}
+              placeholder="New Password"
+              required
+            />
+            <input
+              type="password"
+              ref={conpassref}
+              placeholder="Confirm New Password"
+              required
+            />
+            <input disabled={loading} type="submit" value="UPDATE PASSWORD" />
+          </form>
+          {mes && <div className={mes.includes("not matched") || mes.includes("Unable") ? "err" : "mes"}>{mes}</div>}
+        </>
       ) : (
-        <h4>Your Link expired, please reset the password again</h4>
+        <div className="err">
+          Your link has expired. Please request a new password reset link.
+        </div>
       )}
-      <h3>{mes ? mes : ""}</h3>
     </div>
   );
 };

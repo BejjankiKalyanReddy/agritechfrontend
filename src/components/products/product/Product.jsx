@@ -31,20 +31,40 @@ const Product = ({ item }) => {
     }, 500);
   };
 
+  // Get category icon
+  const getCategoryIcon = (category) => {
+    const categoryLower = category?.toLowerCase() || '';
+    if (categoryLower.includes('seed')) return '🌾';
+    if (categoryLower.includes('fertilizer')) return '💚';
+    if (categoryLower.includes('pecticide') || categoryLower.includes('pesticide')) return '🛡️';
+    return '🌱';
+  };
+
   return (
     <div className="card">
-      {/* <img className="card-img" src={item.image} alt="Product" /> */}
       <img className="card-img" src="/Pecticide.jpg" alt="Product" />
       <div className="card-content">
         <h3 className="card-title">{item.name}</h3>
-        <h4 className="card-subtitle">{item.category}</h4>
+        <h4 className="card-subtitle">
+          <span style={{ marginRight: '6px' }}>{getCategoryIcon(item.category)}</span>
+          {item.category}
+        </h4>
 
         <p className="card-description">{item.description}</p>
         <div className="card-footer">
           <h4 className="card-price">₹{item.price}</h4>
           <button disabled={alert1} className="card-button" onClick={addToCart}>
-            <img className="button-icon" src="/Cart.svg" alt="Cart" />
-            {alert1 ? "Added..." : "Add to Cart"}
+            {alert1 ? (
+              <>
+                <span>✓</span>
+                Added!
+              </>
+            ) : (
+              <>
+                <span>🛒</span>
+                Add to Cart
+              </>
+            )}
           </button>
         </div>
       </div>

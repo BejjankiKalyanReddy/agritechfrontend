@@ -32,7 +32,6 @@ const App = () => {
     <AgriContextProvider>
       <ErrorBoundary>
         <Router>
-          <div className="background"></div>
           <Navigation />
           <div className="container">
             <Routes>

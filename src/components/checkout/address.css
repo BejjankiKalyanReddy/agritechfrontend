@@ -1,40 +1,94 @@
+/* Address - Modern Agriculture Theme */
 .adress-item {
   display: flex;
-  border: 2px solid rgb(119, 119, 119);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.adress-item:hover {
+  border-color: var(--light-green);
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
 .adresslist ul {
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .adresslist li,
 .checkoutaddress {
-  width: 80%;
-  background-color: rgba(186, 186, 184, 0.168);
-  margin: 10px 0;
+  width: 100%;
+  background: var(--cream);
+  margin: 0;
   padding: 20px;
-  margin-left: 5px 20px;
+  border-radius: 12px;
   position: relative;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.adresslist li:hover,
+.checkoutaddress:hover {
+  background: var(--white);
+  border-color: var(--primary-orange);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.1);
 }
 
 .adresslist p,
 .checkoutaddress p {
-  margin: 0;
+  margin: 8px 0;
+  color: var(--text-light);
+  line-height: 1.6;
 }
 
 .adresslist h3,
 .checkoutaddress h3 {
-  margin: 2px 0;
+  margin: 0 0 10px;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .adresslist img {
-  width: 20px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  right: 5%;
+  right: 20px;
   top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.adresslist li:hover img {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .checkoutaddress {
-  background-color: rgba(143, 141, 141, 0.16);
+  background-color: rgba(255, 107, 53, 0.08);
+  border-color: var(--primary-orange);
+}
+
+.checkoutaddress h3::before {
+  content: '📍';
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .adresslist li,
+  .checkoutaddress {
+    padding: 15px;
+  }
+
+  .adresslist img {
+    width: 20px;
+    height: 20px;
+    right: 15px;
+  }
 }

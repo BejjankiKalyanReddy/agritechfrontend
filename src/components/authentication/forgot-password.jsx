@@ -44,7 +44,7 @@ const ForgotPassword = () => {
         />
         <input disabled={loading} type="submit" value="SEND MAIL" />
       </form>
-      {mes ? mes : ""}
+      {mes && <div className="mes">{mes}</div>}
     </div>
   );
 };

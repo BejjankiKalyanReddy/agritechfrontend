@@ -12,13 +12,17 @@ export const AgriContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [cartno, setCartno] = useState(0);
+  const [loadingProducts, setLoadingProducts] = useState(true);
 
   const fetchProducts = async () => {
     try {
+      setLoadingProducts(true);
       const data = await axios.get(`${apiUrl}product/`);
       setProducts(data.data);
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setLoadingProducts(false);
     }
   };
 
@@ -65,6 +69,8 @@ export const AgriContextProvider = ({ children }) => {
     total,
     setTotal,
     cartno,
+    loadingProducts,
+    setLoadingProducts,
   };
 
   return (

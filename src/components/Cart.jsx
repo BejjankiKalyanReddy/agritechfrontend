@@ -3,27 +3,39 @@ import { AgriContext } from "../context/AgriContext";
 import axios from "axios";
 import "./cart.css";
 import { Link } from "react-router-dom";
+import LoadingScreen from "./LoadingScreen";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Cart = () => {
-  const { products, logged, cart, fetchCart, user, total, setTotal } =
+  const { products, logged, cart, fetchCart, user, total, setTotal, loadingProducts } =
     useContext(AgriContext);
 
   useEffect(() => {
-    const total = cart.reduce((acc, item) => {
-      const cartproduct = products.find(
-        (item2) => item.product_id === item2.id
-      );
-      return acc + (cartproduct?.price || 0) * item.count;
-    }, 0);
-    setTotal(total);
-  }, [cart, products]);
+    if (!loadingProducts && products.length > 0) {
+      const total = cart.reduce((acc, item) => {
+        const cartproduct = products.find(
+          (item2) => item.product_id === item2.id
+        );
+        return acc + (cartproduct?.price || 0) * item.count;
+      }, 0);
+      setTotal(total);
+    }
+  }, [cart, products, loadingProducts]);
+
+  if (loadingProducts) {
+    return <LoadingScreen message="Loading cart..." />;
+  }
 
   return (
     <div>
       {total === 0 ? (
-        <h2 className="emptytext"> Your cart is empty</h2>
+        <div>
+          <h2 className="emptytext">Your cart is empty</h2>
+          <p style={{ textAlign: 'center', color: 'var(--text-light)', marginTop: '-40px' }}>
+            Add some amazing agricultural products to get started!
+          </p>
+        </div>
       ) : (
         <>
           <div className="products">

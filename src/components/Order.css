@@ -1,23 +1,54 @@
+/* Order - Modern Agriculture Theme */
 .order {
-  margin: 20px 20px;
-  padding: 20px 30px;
-  /* background-color: rgba(240, 248, 255, 0.558); */
+  margin: 30px auto;
+  padding: 30px;
+  max-width: 1000px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px var(--shadow);
 }
 
 .order h3 {
-  color: rgb(11, 11, 11);
+  color: var(--text-dark);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order h3::before {
+  content: '📦';
+  font-size: 2rem;
 }
 
 .order .order-title {
-  color: rgba(255, 255, 255, 0.734);
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary-orange), var(--warm-amber));
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
 }
 
 .order .card-footer {
   justify-content: space-between;
-  height: 40px;
-  padding-right: 20px;
+  padding: 15px 0;
+  border-top: 2px solid var(--border-color);
+  margin-top: 15px;
 }
 
 .order .card-desc {
-  margin: 8px 0;
+  margin: 12px 0;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .order {
+    margin: 20px 15px;
+    padding: 20px;
+  }
 }

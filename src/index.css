@@ -2,10 +2,48 @@
   margin: 0;
   padding: 0;
   border: 0;
+  
+  /* Modern Agriculture E-commerce Theme - Warm Orange/Teal */
+  --primary-orange: #ff6b35;
+  --secondary-orange: #ff8c42;
+  --light-orange: #ffa366;
+  --accent-teal: #2d9cdb;
+  --dark-teal: #1e7ba8;
+  --warm-amber: #f7931e;
+  --cream-bg: #fefaf7;
+  --white: #ffffff;
+  --off-white: #faf9f7;
+  --text-dark: #2d3436;
+  --text-medium: #636e72;
+  --text-light: #b2bec3;
+  --border-color: #e1e8ed;
+  --success-green: #27ae60;
+  --error-red: #e74c3c;
+  --shadow: rgba(255, 107, 53, 0.1);
+  --shadow-hover: rgba(255, 107, 53, 0.2);
+  --shadow-lg: rgba(45, 156, 219, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #fff5f0 0%, #fefaf7 25%, #f0f7fb 75%, #e8f4f9 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .card button {
-  box-shadow: 0 2px 4px rgba(0, 0, 10, 0.8);
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: all 0.3s ease;
 }
 
 /* Disable the spinner arrows for type="number" inputs */
@@ -16,48 +54,32 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* For Firefox */
-  appearance: textfield; /* Standard */
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 a {
-  /* text-decoration: none; */
-  color: black;
+  color: var(--primary-orange);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--warm-amber);
 }
 
 .policy {
-  padding: 20px 50px;
-  background-color: rgba(255, 255, 255, 0.5);
+  padding: 30px 50px;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  margin: 20px auto;
+  max-width: 900px;
 }
 
-@media (min-width: 451px) {
-  .background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    background-image: url("/strawberry-field.jpg");
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/strawberry-field.jpg"); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: rgba(0, 0, 0, 0.3);
-    background-blend-mode: overlay;
-    z-index: -1;
-  }
-}
-body {
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 600px) {
-  /* body {
-    background-attachment: scroll;
-  } */
+/* Remove old background */
+.background {
+  display: none;
 }
 
 #root {
@@ -65,21 +87,40 @@ body {
   height: auto;
   display: flex;
   flex-direction: column;
-  object-fit: cover;
+}
+
+.container {
+  flex: 1;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 footer {
-  /* margin-top: 100px;
-  position: absolute;
-  bottom: 70; */
-  width: auto;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  background-color: rgba(128, 128, 128, 0.906);
-  padding: 20px;
+  background: linear-gradient(135deg, var(--text-dark) 0%, #3d4a52 100%);
+  padding: 40px 20px;
+  margin-top: auto;
+}
+
+footer a {
+  color: var(--white);
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  background: linear-gradient(135deg, var(--primary-orange), var(--warm-amber));
+  color: var(--white);
+  transform: translateY(-2px);
 }
 
 .spacecover {
@@ -89,21 +130,16 @@ footer {
 input,
 textarea,
 select {
-  font-size: 16px; /* Ensure the font size is at least 16px */
+  font-size: 16px;
 }
 
-@media (max-width: 450px) {
-  .background {
-    top: 0;
-    right: 0;
-    width: 100%;
-    min-height: 100vh;
-    position: fixed;
-    background-size: cover;
-    background-image: url("/strawberry-field.jpg");
-    z-index: -1;
-
-    background-color: rgba(0, 0, 0, 0.45);
-    background-blend-mode: overlay;
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .policy {
+    padding: 20px 25px;
+    margin: 15px;
   }
 }

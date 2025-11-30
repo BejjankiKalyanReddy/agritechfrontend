@@ -73,10 +73,10 @@ const Login = () => {
         <Link to="/forgotpassword">Forgot password?</Link>
       </div>
       <div className="belowlink">
-        Don't have an account, <Link to="/signup">Signup</Link>
+        Don't have an account? <Link to="/signup">Signup</Link>
       </div>
-      <div className="mes">{mes ? mes : ""}</div>
-      <div className="err">{err ? err : ""}</div>
+      {mes && <div className="mes">{mes}</div>}
+      {err && <div className="err">{err}</div>}
     </div>
   );
 };

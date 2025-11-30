@@ -2,31 +2,51 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AgriContext } from "../context/AgriContext";
 import "./Order.css";
+import LoadingScreen from "./LoadingScreen";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Order = () => {
-  const { user, products } = useContext(AgriContext);
+  const { user, products, loadingProducts } = useContext(AgriContext);
   const [orders, setorders] = useState([]);
+  const [loadingOrders, setLoadingOrders] = useState(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        setLoadingOrders(true);
         const data = await axios.get(`${apiUrl}orders/bycustid/${user.id}`);
         setorders(data.data);
       } catch (err) {
         console.log(err.message);
+      } finally {
+        setLoadingOrders(false);
       }
     };
 
-    fetchOrders();
-  }, []);
+    if (user?.id) {
+      fetchOrders();
+    }
+  }, [user]);
+
+  if (loadingProducts || loadingOrders || !user?.id) {
+    return <LoadingScreen message="Loading your orders..." />;
+  }
 
   return (
     <div className="order">
-      <h3 className="order-title">Your Order's</h3>
+      <h3 className="order-title">Your Orders</h3>
       {orders.length === 0
-        ? "No products"
+        ? (
+            <div className="loading-screen">
+              <div className="loading-container">
+                <h3 className="loading-text">No orders found</h3>
+                <p style={{ color: 'var(--text-medium)', marginTop: '10px' }}>
+                  Start shopping to see your orders here!
+                </p>
+              </div>
+            </div>
+          )
         : orders.map((item) => {
             const orderproduct = products.find(
               (item2) => item.product_id === item2.id

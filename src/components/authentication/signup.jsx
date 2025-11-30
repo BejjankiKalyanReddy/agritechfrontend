@@ -78,10 +78,10 @@ const Signup = () => {
         <input disabled={loading} type="submit" value="SIGNUP" />
       </form>
       <div className="belowlink">
-        Aready having an account, <Link to={"/login"}>Login</Link>
+        Already have an account? <Link to={"/login"}>Login</Link>
       </div>
-      <div className="err">{err ? err : ""}</div>
-      <div className="mes">{mes ? mes : ""}</div>
+      {err && <div className="err">{err}</div>}
+      {mes && <div className="mes">{mes}</div>}
     </div>
   );
 };

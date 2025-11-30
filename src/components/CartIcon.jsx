@@ -8,8 +8,8 @@ const CartIcon = () => {
   return (
     <li>
       <Link className="cartlink" to={"/cart"}>
-        <img src="Cart.svg" alt="cart" />
-        <div className="cartcount">{cartno}</div>
+        <span style={{ fontSize: '1.5rem' }}>🛒</span>
+        {cartno > 0 && <div className="cartcount">{cartno}</div>}
       </Link>
     </li>
   );
